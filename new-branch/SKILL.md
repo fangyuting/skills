@@ -20,24 +20,16 @@ disable-model-invocation: true
 
 ## 第二步：生成分支名
 
-先执行以下命令获取当前日期和 git 用户名：
-
-```bash
-date +%y%m%d
-git config user.name
-```
 
 按规范拼接分支名：
 
 ```
-{类型}/{日期}/{作者}-{功能描述}
+{类型}/{功能描述}
 ```
 
-- 日期格式：`YYMMDD`（如 `260403`）
-- 作者取 git user.name，转小写
 - 功能描述小写、单词间用 `-` 分隔
 
-示例：`feature/260403/zhangsan-user-login`
+示例：`user-login`
 
 将完整分支名展示给我确认，**等我确认后再执行后续步骤**。
 
@@ -46,10 +38,8 @@ git config user.name
 依次执行：
 
 ```bash
-git checkout release
-git pull origin release
-git checkout -b {分支名}
-git push -u origin {分支名}
+git fetch origin
+git switch -c {分支名} origin/release
 ```
 
 如果当前有未提交的改动，提示我先处理（stash 或提交），不要强行切换分支。
@@ -61,11 +51,11 @@ git push -u origin {分支名}
 ```markdown
 ### {需求概述}（{分支名}）
 ```
-
+ng20250108lic
 示例：
 
 ```markdown
-### 用户登录功能（feature/260403/zhangsan-user-login）
+### 用户登录功能（zhangsan-user-login）
 ```
 
 该小节初始内容为空，后续由 `/version-commit` 负责追加每次提交记录。

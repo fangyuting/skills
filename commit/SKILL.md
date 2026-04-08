@@ -40,6 +40,7 @@ disable-model-invocation: true
 
   - 明细1
   - 明细2
+
 ```
 
 - 日期使用今天的实际日期（ISO 格式），作者取 git user.name

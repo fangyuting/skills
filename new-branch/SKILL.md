@@ -58,7 +58,7 @@ ng20250108lic
 ### 用户登录功能（zhangsan-user-login）
 ```
 
-该小节初始内容为空，后续由 `/version-commit` 负责追加每次提交记录。
+该小节初始内容为空，后续由 `/commit` 负责追加每次提交记录。
 
 将更新后的 README.md 单独提交：
 

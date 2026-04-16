@@ -39,8 +39,10 @@ disable-model-invocation: true
 
 ```bash
 git fetch origin
-git switch -c {分支名} origin/release
+git switch -c {分支名} --no-track origin/release
 ```
+
+**必须加 `--no-track`**：新分支只用 `origin/release` 作为起点（基线代码），但**不追踪** release 作为 upstream。否则后续 `git push` 会把代码直接推到 release，污染发布分支。
 
 如果当前有未提交的改动，提示我先处理（stash 或提交），不要强行切换分支。
 
@@ -51,7 +53,7 @@ git switch -c {分支名} origin/release
 ```markdown
 ### {需求概述}（{分支名}）
 ```
-ng20250108lic
+
 示例：
 
 ```markdown
@@ -68,8 +70,18 @@ docs: 新增 {分支名} 版本管理章节
 
 不要添加 Co-Authored-By 行。
 
+## 第五步：首次推送并设置正确的远端 tracking
+
+执行：
+
+```bash
+git push -u origin {分支名}
+```
+
+`-u` 让当前分支的 upstream 指向 `origin/{分支名}`（和本地同名的远端分支），**覆盖**第三步创建分支时可能留下的任何 release 指向。以后在该分支上 `git push` / `git pull` 都作用于 `origin/{分支名}`，不会误动 release。
+
 ## 完成后输出摘要
 
 - 分支名
-- 基于 release 分支创建
+- 基于 release 分支创建（`--no-track`）
 - README 新增小节位置
